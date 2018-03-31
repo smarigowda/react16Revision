@@ -10,8 +10,6 @@ pipeline {
            npm install
            npm run build
         """
-        echo 'Sleeping...'
-        sleep 30
       }
     }
   }
