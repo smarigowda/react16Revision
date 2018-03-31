@@ -4,6 +4,7 @@ import Person from './Person';
 import { shallow } from 'enzyme';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import renderer from 'react-test-renderer';
 
 configure({ adapter: new Adapter() });
 
@@ -29,4 +30,9 @@ it('renders the text inside the tag', () => {
   const wrapper = shallow(<Person name="Santosh" age="44">My Hobby: Coding</Person>);
   const expectedMatching = expect.stringMatching(/My Hobby: Coding/);
   expect(wrapper.text()).toEqual(expectedMatching);
+})
+
+it('renders correctly', () => {
+  const tree = renderer.create(<Person name="Santosh" age="45"/>).toJSON();
+  expect(tree).toMatchSnapshot();
 })
