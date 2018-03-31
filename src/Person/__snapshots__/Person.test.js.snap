@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <p
+    id="person"
+  >
+    I'm 
+    Santosh
+    , I am 
+    45
+     years old
+  </p>
+  <p />
+</div>
+`;
