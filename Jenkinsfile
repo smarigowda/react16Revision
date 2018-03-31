@@ -9,7 +9,7 @@ pipeline {
            nvm use v8.10.0
            npm install
            npm run build
-           CI=true npm test -- --coverage
+           CI=true npm test -- --coverage --verbose
         """
       }
     }
