@@ -11,6 +11,9 @@ exports[`renders correctly 1`] = `
     45
      years old
   </p>
-  <p />
+  <p
+    id="message"
+    onClick={[Function]}
+  />
 </div>
 `;

@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Person from './Person';
-import { shallow } from 'enzyme';
-import { configure } from 'enzyme';
+import { shallow, mount, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 
@@ -33,7 +32,22 @@ it('renders the text inside the tag', () => {
 });
 
 it('renders correctly', () => {
-  const tree = renderer.create(<Person name="Santosh" age="45"/>).toJSON();
+  const clickHandler = jest.fn();
+  const tree = renderer.create(<Person name="Santosh" age="45" click={clickHandler} />).toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+it('Person should have on click handler on message element', () => {
+  const clickHandler = jest.fn();
+  const wrapper = shallow(<Person click={clickHandler}/>);
+  expect(wrapper.find('#message').props()).toHaveProperty('onClick');
+  expect(wrapper.find('#message').prop('onClick')).toBeDefined();
+});
+
+it('Clicking on the message should call the event handler function', () => {
+  const clickHandler = jest.fn(); 
+  const wrapper = mount(<Person click={clickHandler}/>);
+  wrapper.find('#message').simulate('click');
+  expect(clickHandler.mock.calls.length).toBe(1);
+})
 
