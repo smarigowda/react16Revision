@@ -29,6 +29,11 @@ module.exports = function (wallaby) {
           presets: ['react-app']
         })
       },
+
+      filesWithNoCoverageCalculated: [
+        'src/registerServiceWorker.js',
+        'src/index.js'
+      ],
   
       setup: wallaby => {
         const jestConfig = require('react-scripts/scripts/utils/createJestConfig')(p => require.resolve('react-scripts/' + p));

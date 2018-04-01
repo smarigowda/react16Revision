@@ -29,7 +29,7 @@ class App extends Component {
         <h1>Hi I'm a React app</h1>
         <p>This is really working !</p>
         <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>My Hobbies: Reading</Person>
+        <Person click={this.switchNameHandler} name={this.state.persons[0].name} age={this.state.persons[0].age}>My Hobbies: Reading</Person>
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
       </div>
