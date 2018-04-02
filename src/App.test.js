@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { shallow, configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
-
-configure({ adapter: new Adapter() });
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -47,4 +44,14 @@ it('When the input value of first Person is changed, it should update the state'
   const wrapper = mount(<App />);
   wrapper.find('input').first().simulate('change', {target: {value: 'Santosh Arakere Marigowda'}});
   expect(wrapper.state('persons')[0].name).toEqual('Santosh Arakere Marigowda');
-})
+});
+
+it('should update the state when username is changed', () => {
+  const wrapper = mount(<App />);
+  wrapper.find('input.data-test-id-userName').simulate('change', {
+    target: {
+      value: 'Santosh AM'
+    }
+  });
+  expect(wrapper.state('userName')).toEqual('Santosh AM');
+});
