@@ -15,5 +15,10 @@ exports[`renders correctly 1`] = `
     id="message"
     onClick={[Function]}
   />
+  <input
+    onChange={undefined}
+    type="text"
+    value="Santosh"
+  />
 </div>
 `;
