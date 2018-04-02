@@ -49,5 +49,22 @@ it('Clicking on the message should call the event handler function', () => {
   const wrapper = mount(<Person click={clickHandler}/>);
   wrapper.find('#message').simulate('click');
   expect(clickHandler.mock.calls.length).toBe(1);
+});
+
+it('Person should have an input element', () => {
+  const wrapper = shallow(<Person name="Santosh" age="45"/>);
+  expect(wrapper.find('input')).toHaveLength(1);
+});
+
+it('Input element should have a onChange attr', () => {
+  const wrapper = shallow(<Person name="Santosh" age="45"/>);
+  expect(wrapper.find('input').props()).toHaveProperty('onChange');
+});
+
+it('When the input value is changed, change handler should be called', () => {
+  const changeHandler = jest.fn();
+  const wrapper = mount(<Person changeHandler={changeHandler}/>);
+  wrapper.find('input').simulate('change', {target: {value: 'My new value'}});
+  expect(changeHandler.mock.calls.length).toBe(1);
 })
 

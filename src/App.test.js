@@ -36,3 +36,15 @@ it('Clicking on the button should call the event handler function', () => {
   wrapper.find('button').simulate('click');
   expect(wrapper.state('persons')[0].name).toEqual('Santosh Marigowda');
 });
+
+it('Clicking on the Person with message should call the event handler', () => {
+  const wrapper = mount(<App />);
+  wrapper.find('p#message').first().simulate('click'); //?
+  expect(wrapper.state('persons')[0].name).toEqual('Santosh A Marigowda');
+});
+
+it('When the input value of first Person is changed, it should update the state', () => {
+  const wrapper = mount(<App />);
+  wrapper.find('input').first().simulate('change', {target: {value: 'Santosh Arakere Marigowda'}});
+  expect(wrapper.state('persons')[0].name).toEqual('Santosh Arakere Marigowda');
+})
