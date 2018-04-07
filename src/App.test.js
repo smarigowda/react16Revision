@@ -28,20 +28,25 @@ it('Button should have a onClick handler', () => {
   expect(wrapper.find('button').props()).toHaveProperty('onClick');
 });
 
-it('Clicking on the button should call the event handler function', () => {
+it('Clicking on the button for first time should set the state of showPersons to true and show three Persons', () => {
   const wrapper = mount(<App />);
+  expect(wrapper.state('showPersons')).toEqual(false);
+  expect(wrapper.find('div.Person')).toHaveLength(0);
   wrapper.find('button').simulate('click');
-  expect(wrapper.state('persons')[0].name).toEqual('Santosh Marigowda');
+  expect(wrapper.state('showPersons')).toEqual(true);
+  expect(wrapper.find('div.Person')).toHaveLength(3);
 });
 
 it('Clicking on the Person with message should call the event handler', () => {
   const wrapper = mount(<App />);
+  wrapper.find('button').simulate('click');
   wrapper.find('p#message').first().simulate('click'); //?
   expect(wrapper.state('persons')[0].name).toEqual('Santosh A Marigowda');
 });
 
 it('When the input value of first Person is changed, it should update the state', () => {
   const wrapper = mount(<App />);
+  wrapper.find('button').simulate('click');
   wrapper.find('input').first().simulate('change', {target: {value: 'Santosh Arakere Marigowda'}});
   expect(wrapper.state('persons')[0].name).toEqual('Santosh Arakere Marigowda');
 });
