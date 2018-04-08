@@ -51,6 +51,13 @@ it('Clicking on a Person should delete the Person', () => {
 //   expect(wrapper.state('persons')[0].name).toEqual('Santosh Arakere Marigowda');
 // });
 
+it('should update the name of a person when input is updated', () => {
+  const wrapper = mount(<App />);
+  wrapper.find('button').simulate('click');
+  wrapper.find('.Person input').first().simulate('change', {target: {value: 'My new value'}}); //?
+  expect(wrapper.state('persons')[0].name).toBe('My new value');
+});
+
 it('should update the state when username is changed', () => {
   const wrapper = mount(<App />);
   wrapper.find('input.data-test-id-userName').simulate('change', {
