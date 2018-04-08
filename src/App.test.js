@@ -75,6 +75,6 @@ it('should display the text length', () => {
       value: 'Santosh AM'
     }
   });
-  let actual = wrapper.find('div.assign-2 p').text() //?
+  let actual = wrapper.find('div.assign-2 p').first().text() //?
   expect(actual).toEqual('Length of text = 10');
 })
