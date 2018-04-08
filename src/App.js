@@ -8,9 +8,9 @@ class App extends Component {
 
   state = {
     persons: [
-      { name: "Santosh", age: 45 },
-      { name: "Roopa", age: 40 },
-      { name: "Sukruthi", age: 14 }
+      { id: "jdjhfk", name: "Santosh", age: 45 },
+      { id: "sukklf", name: "Roopa", age: 40 },
+      { id: "elsnsn", name: "Sukruthi", age: 14 }
     ],
     other: 'Some other state',
     userName: 'Santosh Default Name',
@@ -28,17 +28,30 @@ class App extends Component {
   //   })
   // }
 
-  // nameChangeHandler = event => {
-  //   this.setState({
-  //     persons: [
-  //       { name: event.target.value, age: 45 },
-  //       { name: "Roopa", age: 40 },
-  //       { name: "Sukruthi", age: 14 }
-  //     ]
-  //   })
-  // }
+  nameChangeHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(d => d.id === id);
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+    // const person = Object.assign({}, this.state.persons[personIndex]);
+    person.name = event.target.value;
 
-  userNameChangeHandler = event => {
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({
+      persons: persons
+    });
+  }
+
+  deletePersonHandler = index => {
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
+    persons.splice(index, 1);
+    this.setState({
+      persons: persons
+    })
+  }
+  userNameChangeHandler = (event) => {
     this.setState({
       userName: event.target.value,
     })
@@ -59,8 +72,13 @@ class App extends Component {
       persons = (
         <div>
           {
-            this.state.persons.map(d => {
-              return <Person name={d.name} age={d.age} />
+            this.state.persons.map((d, index) => {
+              return <Person 
+                        key={d.id}
+                        name={d.name}
+                        age={d.age}
+                        click={ index => { this.deletePersonHandler(index) }}
+                        changeHandler={ (event) => this.nameChangeHandler(event, d.id) } />
             })
           }
           {/* <Person

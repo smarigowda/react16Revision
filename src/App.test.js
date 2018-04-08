@@ -37,12 +37,12 @@ it('Clicking on the button for first time should set the state of showPersons to
   expect(wrapper.find('div.Person')).toHaveLength(3);
 });
 
-// it('Clicking on the Person with message should call the event handler', () => {
-//   const wrapper = mount(<App />);
-//   wrapper.find('button').simulate('click');
-//   wrapper.find('p#message').first().simulate('click'); //?
-//   expect(wrapper.state('persons')[0].name).toEqual('Santosh A Marigowda');
-// });
+it('Clicking on a Person should delete the Person', () => {
+  const wrapper = mount(<App />);
+  wrapper.find('button').simulate('click');
+  wrapper.find('p#person').first().simulate('click');
+  expect(wrapper.find('p#person')).toHaveLength(2);
+});
 
 // it('When the input value of first Person is changed, it should update the state', () => {
 //   const wrapper = mount(<App />);
@@ -50,6 +50,13 @@ it('Clicking on the button for first time should set the state of showPersons to
 //   wrapper.find('input').first().simulate('change', {target: {value: 'Santosh Arakere Marigowda'}});
 //   expect(wrapper.state('persons')[0].name).toEqual('Santosh Arakere Marigowda');
 // });
+
+it('should update the name of a person when input is updated', () => {
+  const wrapper = mount(<App />);
+  wrapper.find('button').simulate('click');
+  wrapper.find('.Person input').first().simulate('change', {target: {value: 'My new value'}}); //?
+  expect(wrapper.state('persons')[0].name).toBe('My new value');
+});
 
 it('should update the state when username is changed', () => {
   const wrapper = mount(<App />);
