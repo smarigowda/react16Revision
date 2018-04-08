@@ -67,3 +67,14 @@ it('should update the state when username is changed', () => {
   });
   expect(wrapper.state('userName')).toEqual('Santosh AM');
 });
+
+it('should display the text length', () => {
+  const wrapper = mount(<App />);
+  const input = wrapper.find('div.assign-2 input').simulate('change', {
+    target: {
+      value: 'Santosh AM'
+    }
+  });
+  let actual = wrapper.find('div.assign-2 p').text() //?
+  expect(actual).toEqual('Length of text = 10');
+})

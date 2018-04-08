@@ -15,6 +15,8 @@ class App extends Component {
     other: 'Some other state',
     userName: 'Santosh Default Name',
     showPersons: false,
+    inputText: '',
+    textLenght: ''
   }
 
   // switchNameHandler = newName => {
@@ -64,6 +66,11 @@ class App extends Component {
     })
   }
 
+  updateText = event => {
+    this.setState({
+      inputText: event.target.value
+    })
+  }
   render() {
 
     let persons = null;
@@ -101,6 +108,11 @@ class App extends Component {
         <UserInput userName={this.state.userName} nameChangeHandler={this.userNameChangeHandler}/>
         <UserOutput username={this.state.userName}/>
         <UserOutput username="Roopa"/>
+        <div className="assign-2">
+          <h1>Assignment 2</h1>
+          <input type="text" value={this.state.inputText} onChange={this.updateText}/>
+          <p>Length of text = {this.state.inputText.length}</p>
+        </div>
       </div>
     );
   }
