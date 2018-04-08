@@ -4,6 +4,7 @@ import Person from './Person/Person';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
 import ValidateText from './ValidateText/ValidateText';
+import CharText from './CharText/CharText';
 
 class App extends Component {
 
@@ -100,6 +101,11 @@ class App extends Component {
       );
     }
 
+    let inputTextArray = this.state.inputText.split('');
+    let charList = inputTextArray.map(d => {
+      return <CharText char={d} />
+    });
+
     return (
       <div className="App">
         <h1>Hi I'm a React app</h1>
@@ -114,6 +120,7 @@ class App extends Component {
           <input type="text" value={this.state.inputText} onChange={this.updateText}/>
           <p>Length of text = {this.state.inputText.length}</p>
           <ValidateText text={this.state.inputText}/>
+          {charList}
         </div>
       </div>
     );
