@@ -34,17 +34,17 @@ it('renders correctly', () => {
   expect(tree).toMatchSnapshot();
 });
 
-it('Person should have on click handler on message element', () => {
+it('Person should have on click handler', () => {
   const clickHandler = jest.fn();
   const wrapper = shallow(<Person click={clickHandler}/>);
-  expect(wrapper.find('#message').props()).toHaveProperty('onClick');
-  expect(wrapper.find('#message').prop('onClick')).toBeDefined();
+  expect(wrapper.find('#person').props()).toHaveProperty('onClick');
+  expect(wrapper.find('#person').prop('onClick')).toBeDefined();
 });
 
-it('Clicking on the message should call the event handler function', () => {
-  const clickHandler = jest.fn(); 
+it('Clicking on the Person should call the event handler function', () => {
+  const clickHandler = jest.fn();
   const wrapper = mount(<Person click={clickHandler}/>);
-  wrapper.find('#message').simulate('click');
+  wrapper.find('#person').simulate('click');
   expect(clickHandler.mock.calls.length).toBe(1);
 });
 

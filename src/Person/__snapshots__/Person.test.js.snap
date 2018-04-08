@@ -6,6 +6,7 @@ exports[`renders correctly 1`] = `
 >
   <p
     id="person"
+    onClick={[Function]}
   >
     I'm 
     Santosh
@@ -15,7 +16,6 @@ exports[`renders correctly 1`] = `
   </p>
   <p
     id="message"
-    onClick={[Function]}
   />
   <input
     onChange={undefined}
