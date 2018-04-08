@@ -52,12 +52,11 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <h1>Hi I'm a React app</h1>
-        <p>This is really working !</p>
-        <button className="Button" onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {this.state.showPersons ?
+
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
         <div>
           <Person
             click={this.switchNameHandler.bind(this, 'Santosh A Marigowda')}
@@ -66,7 +65,16 @@ class App extends Component {
             changeHandler={this.nameChangeHandler}>My Hobbies: Reading</Person>
           <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
           <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
-        </div> : null}
+        </div>
+      );
+    }
+
+    return (
+      <div className="App">
+        <h1>Hi I'm a React app</h1>
+        <p>This is really working !</p>
+        <button className="Button" onClick={this.togglePersonsHandler}>Toggle Persons</button>
+          {persons}
         <UserInput userName={this.state.userName} nameChangeHandler={this.userNameChangeHandler}/>
         <UserOutput username={this.state.userName}/>
         <UserOutput username="Roopa"/>
