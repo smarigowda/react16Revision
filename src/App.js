@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
+import ValidateText from './ValidateText/ValidateText';
 
 class App extends Component {
 
@@ -112,6 +113,7 @@ class App extends Component {
           <h1>Assignment 2</h1>
           <input type="text" value={this.state.inputText} onChange={this.updateText}/>
           <p>Length of text = {this.state.inputText.length}</p>
+          <ValidateText text={this.state.inputText}/>
         </div>
       </div>
     );
