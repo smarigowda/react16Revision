@@ -73,6 +73,11 @@ class App extends Component {
       inputText: event.target.value
     })
   }
+
+  deleteCharTextHandler = index => {
+    console.log(index);
+  }
+
   render() {
 
     let persons = null;
@@ -90,20 +95,13 @@ class App extends Component {
                         changeHandler={ (event) => this.nameChangeHandler(event, d.id) } />
             })
           }
-          {/* <Person
-            click={this.switchNameHandler.bind(this, 'Santosh A Marigowda')}
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-            changeHandler={this.nameChangeHandler}>My Hobbies: Reading</Person>
-          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age} /> */}
         </div>
       );
     }
 
     let inputTextArray = this.state.inputText.split('');
-    let charList = inputTextArray.map(d => {
-      return <CharText char={d} />
+    let charList = inputTextArray.map((d, index) => {
+      return <CharText char={d} clickHandler={ (event) => this.deleteCharTextHandler(index) }/>
     });
 
     return (
