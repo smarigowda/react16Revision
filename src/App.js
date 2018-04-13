@@ -75,7 +75,12 @@ class App extends Component {
   }
 
   deleteCharTextHandler = index => {
-    console.log(index);
+    const inputTextArray = this.state.inputText.split('');
+    inputTextArray.splice(index, 1);
+    const newText = inputTextArray.join('');
+    this.setState({
+      inputText: newText
+    })
   }
 
   render() {
@@ -101,7 +106,7 @@ class App extends Component {
 
     let inputTextArray = this.state.inputText.split('');
     let charList = inputTextArray.map((d, index) => {
-      return <CharText char={d} clickHandler={ (event) => this.deleteCharTextHandler(index) }/>
+      return <CharText key={index} char={d} clickHandler={ (event) => this.deleteCharTextHandler(index) }/>
     });
 
     return (
