@@ -3,6 +3,8 @@ import './App.css';
 import Person from './Person/Person';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
+import ValidateText from './ValidateText/ValidateText';
+import CharText from './CharText/CharText';
 
 class App extends Component {
 
@@ -15,6 +17,8 @@ class App extends Component {
     other: 'Some other state',
     userName: 'Santosh Default Name',
     showPersons: false,
+    inputText: '',
+    textLenght: ''
   }
 
   // switchNameHandler = newName => {
@@ -64,6 +68,21 @@ class App extends Component {
     })
   }
 
+  updateText = event => {
+    this.setState({
+      inputText: event.target.value
+    })
+  }
+
+  deleteCharTextHandler = index => {
+    const inputTextArray = this.state.inputText.split('');
+    inputTextArray.splice(index, 1);
+    const newText = inputTextArray.join('');
+    this.setState({
+      inputText: newText
+    })
+  }
+
   render() {
 
     let persons = null;
@@ -81,16 +100,14 @@ class App extends Component {
                         changeHandler={ (event) => this.nameChangeHandler(event, d.id) } />
             })
           }
-          {/* <Person
-            click={this.switchNameHandler.bind(this, 'Santosh A Marigowda')}
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-            changeHandler={this.nameChangeHandler}>My Hobbies: Reading</Person>
-          <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age} /> */}
         </div>
       );
     }
+
+    let inputTextArray = this.state.inputText.split('');
+    let charList = inputTextArray.map((d, index) => {
+      return <CharText key={index} char={d} clickHandler={ (event) => this.deleteCharTextHandler(index) }/>
+    });
 
     return (
       <div className="App">
@@ -101,6 +118,13 @@ class App extends Component {
         <UserInput userName={this.state.userName} nameChangeHandler={this.userNameChangeHandler}/>
         <UserOutput username={this.state.userName}/>
         <UserOutput username="Roopa"/>
+        <div className="assign-2">
+          <h1>Assignment 2</h1>
+          <input type="text" value={this.state.inputText} onChange={this.updateText}/>
+          <p>Length of text = {this.state.inputText.length}</p>
+          <ValidateText text={this.state.inputText}/>
+          {charList}
+        </div>
       </div>
     );
   }

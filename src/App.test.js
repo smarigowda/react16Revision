@@ -67,3 +67,31 @@ it('should update the state when username is changed', () => {
   });
   expect(wrapper.state('userName')).toEqual('Santosh AM');
 });
+
+it('should display the text length', () => {
+  const wrapper = mount(<App />);
+  const input = wrapper.find('div.assign-2 input').simulate('change', {
+    target: {
+      value: 'Santosh AM'
+    }
+  });
+  let actual = wrapper.find('div.assign-2 p').first().text() //?
+  expect(actual).toEqual('Length of text = 10');
+})
+
+it('should render CharText component', () => {
+  const wrapper = mount(<App />);
+  wrapper.setState({ inputText: 'ROOA'});
+  wrapper.render();
+  wrapper.html(); //?
+})
+
+it('should remove the CharText comp on click', () => {
+  const wrapper = mount(<App />);
+  wrapper.setState({
+    inputText: 'Santosh'
+  });
+  wrapper.html();
+  wrapper.find('.char-text').first().simulate('click');
+  expect(wrapper.find('.char-text').first().text()).toBe('a');
+})
