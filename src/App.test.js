@@ -78,3 +78,20 @@ it('should display the text length', () => {
   let actual = wrapper.find('div.assign-2 p').first().text() //?
   expect(actual).toEqual('Length of text = 10');
 })
+
+it('should render CharText component', () => {
+  const wrapper = mount(<App />);
+  wrapper.setState({ inputText: 'ROOA'});
+  wrapper.render();
+  wrapper.html(); //?
+})
+
+it('should remove the CharText comp on click', () => {
+  const wrapper = mount(<App />);
+  wrapper.setState({
+    inputText: 'Santosh'
+  });
+  wrapper.html();
+  wrapper.find('.char-text').first().simulate('click');
+  expect(wrapper.find('.char-text').first().text()).toBe('a');
+})
