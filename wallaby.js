@@ -19,7 +19,8 @@ module.exports = function (wallaby) {
 
       filesWithNoCoverageCalculated: [
         'src/registerServiceWorker.js',
-        'src/index.js'
+        'src/index.js',
+        'config/**/*.js'
       ],
   
       setup: function(wallaby) {
