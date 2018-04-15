@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { shallow, mount } from 'enzyme';
-import renderer from 'react-test-renderer';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -70,7 +69,7 @@ it('should update the state when username is changed', () => {
 
 it('should display the text length', () => {
   const wrapper = mount(<App />);
-  const input = wrapper.find('div.assign-2 input').simulate('change', {
+  wrapper.find('div.assign-2 input').simulate('change', {
     target: {
       value: 'Santosh AM'
     }

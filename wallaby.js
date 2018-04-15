@@ -1,18 +1,8 @@
 module.exports = function (wallaby) {
-
-    // Babel, jest-cli and some other modules may be located under
-    // react-scripts/node_modules, so need to let node.js know about it
-    var path = require('path');
-    process.env.NODE_PATH +=
-      path.delimiter +
-      path.join(__dirname, 'node_modules') +
-      path.delimiter +
-      path.join(__dirname, 'node_modules/react-scripts/node_modules');
-    require('module').Module._initPaths();
-  
     return {
       files: [
         'src/**/*.+(js|jsx|json|snap|css|less|sass|scss|jpg|jpeg|gif|png|svg)',
+        'config/**/*.js',
         '!src/**/*.test.js?(x)'
       ],
   
@@ -24,20 +14,18 @@ module.exports = function (wallaby) {
       },
   
       compilers: {
-        '**/*.js?(x)': wallaby.compilers.babel({
-          babel: require('babel-core'),
-          presets: ['react-app']
-        })
+        '**/*.js?(x)': wallaby.compilers.babel({})
       },
 
       filesWithNoCoverageCalculated: [
         'src/registerServiceWorker.js',
-        'src/index.js'
+        'src/index.js',
+        'config/**/*.js'
       ],
   
-      setup: wallaby => {
-        const jestConfig = require('react-scripts/scripts/utils/createJestConfig')(p => require.resolve('react-scripts/' + p));
-        Object.keys(jestConfig.transform || {}).forEach(k => ~k.indexOf('^.+\\.(js|jsx') && void delete jestConfig.transform[k]);
+      setup: function(wallaby) {
+        const jestConfig = require('./package.json').jest;
+        delete jestConfig.transform['^.+\\.(js|jsx)$'];
         delete jestConfig.testEnvironment;
         wallaby.testFramework.configure(jestConfig);
       },
