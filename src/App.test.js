@@ -28,11 +28,16 @@ it('Button should have a onClick handler', () => {
 });
 
 it('Clicking on the button for first time should set the state of showPersons to true and show three Persons', () => {
-  const wrapper = mount(<App />);
+  const wrapper = mount(<App />); //?
   expect(wrapper.state('showPersons')).toEqual(false);
-  expect(wrapper.find('div.Person')).toHaveLength(0);
+  wrapper.find('[class*="Person"]') //?
+  expect(wrapper.find('[class*="Person"]')).toHaveLength(0);
+  wrapper.find('button'); //?
   wrapper.find('button').simulate('click');
   expect(wrapper.state('showPersons')).toEqual(true);
+  debugger;
+  console.log(wrapper.html()) //?
+  wrapper.find('[class*="Person"]'); //?
   expect(wrapper.find('div.Person')).toHaveLength(3);
 });
 

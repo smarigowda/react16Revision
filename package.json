@@ -75,7 +75,8 @@
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
     "moduleNameMapper": {
-      "^react-native$": "react-native-web"
+      "^react-native$": "react-native-web",
+      "\\.(css|less)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": [
       "web.js",
@@ -85,7 +86,8 @@
       "web.jsx",
       "jsx",
       "node"
-    ]
+    ],
+    "scriptPreprocessor": "<rootDir>/node_modules/jest-css-modules"
   },
   "babel": {
     "presets": [
@@ -96,6 +98,8 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-css-modules": "^1.1.0"
   }
 }
