@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
 import ValidateText from './ValidateText/ValidateText';
 import CharText from './CharText/CharText';
+import classNames from 'classnames';
 
 class App extends Component {
 
@@ -110,10 +111,10 @@ class App extends Component {
     });
 
     return (
-      <div className="App">
+      <div className={classNames(classes.App, classes.body)}>
         <h1>Hi I'm a React app</h1>
         <p>This is really working !</p>
-        <button className="Button" onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <button className={classes.Button} onClick={this.togglePersonsHandler}>Toggle Persons</button>
           {persons}
         <UserInput userName={this.state.userName} nameChangeHandler={this.userNameChangeHandler}/>
         <UserOutput username={this.state.userName}/>
