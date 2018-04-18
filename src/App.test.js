@@ -95,7 +95,7 @@ it('should remove the CharText comp on click', () => {
   wrapper.setState({
     inputText: 'Santosh'
   });
-  wrapper.html();
-  wrapper.find('.char-text').first().simulate('click');
-  expect(wrapper.find('.char-text').first().text()).toBe('a');
+  wrapper.html(); //?
+  wrapper.find('.chartext').first().simulate('click');
+  expect(wrapper.find('.chartext').first().text()).toBe('a');
 })

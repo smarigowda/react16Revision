@@ -1,0 +1,7 @@
+.chartext {
+  display: inline-block;
+  width: 20px;
+  border: 1px solid blue;
+  margin: 10px;
+  padding: 10px;
+}

@@ -110,11 +110,18 @@ class App extends Component {
       return <CharText key={index} char={d} clickHandler={ (event) => this.deleteCharTextHandler(index) }/>
     });
 
+    let toggleButtonStyle;
+    if(!this.state.showPersons) {
+      toggleButtonStyle = classNames(classes.Button, classes.green);
+    } else {
+      toggleButtonStyle = classNames(classes.Button, classes.red);
+    }
+
     return (
       <div className={classNames(classes.App, classes.body)}>
         <h1>Hi I'm a React app</h1>
         <p>This is really working !</p>
-        <button className={classes.Button} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        <button className={toggleButtonStyle} onClick={this.togglePersonsHandler}>Toggle Persons</button>
           {persons}
         <UserInput userName={this.state.userName} nameChangeHandler={this.userNameChangeHandler}/>
         <UserOutput username={this.state.userName}/>
