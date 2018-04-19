@@ -6,6 +6,7 @@ import UserInput from './UserInput/UserInput';
 import ValidateText from './ValidateText/ValidateText';
 import CharText from './CharText/CharText';
 import classNames from 'classnames';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
@@ -93,12 +94,13 @@ class App extends Component {
         <div>
           {
             this.state.persons.map((d, index) => {
-              return <Person 
-                        key={d.id}
-                        name={d.name}
-                        age={d.age}
-                        click={ index => { this.deletePersonHandler(index) }}
-                        changeHandler={ (event) => this.nameChangeHandler(event, d.id) } />
+              return  <ErrorBoundary key={d.id}>
+                        <Person
+                          name={d.name}
+                          age={d.age}
+                          click={ index => { this.deletePersonHandler(index) }}
+                          changeHandler={ (event) => this.nameChangeHandler(event, d.id) } />
+                      </ErrorBoundary>
             })
           }
         </div>
