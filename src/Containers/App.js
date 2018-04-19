@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from './Person/Person';
-import UserOutput from './UserOutput/UserOutput';
-import UserInput from './UserInput/UserInput';
-import ValidateText from './ValidateText/ValidateText';
-import CharText from './CharText/CharText';
+import Person from '../Components/Persons/Person/Person';
+import UserOutput from '../Components/UserOutput/UserOutput';
+import UserInput from '../Components/UserInput/UserInput';
+import ValidateText from '../Components/ValidateText/ValidateText';
+import CharText from '../Components/CharText/CharText';
 import classNames from 'classnames';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
