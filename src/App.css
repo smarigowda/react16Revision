@@ -2,12 +2,16 @@
   text-align: center;
 }
 
-.Button {
-  background-color: white;
+.App .Button {
   font: inherit;
   border: 1px solid blue;
   padding: 8px;
   cursor: pointer;
+}
+
+.App .Button:hover {
+  background-color: lightgreen;
+  color: black;
 }
 
 .body {
@@ -20,6 +24,11 @@
   background-color: green;
 }
 
-.red {
+.App button.red {
   background-color: red;
+}
+
+.App button.red:hover {
+  background-color: salmon;
+  color: black;
 }
