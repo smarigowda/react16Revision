@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../Components/Persons/Person/Person';
 import UserOutput from '../Components/UserOutput/UserOutput';
 import UserInput from '../Components/UserInput/UserInput';
 import ValidateText from '../Components/ValidateText/ValidateText';
 import CharText from '../Components/CharText/CharText';
 import classNames from 'classnames';
-import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary';
+import Persons from '../Components/Persons/Persons';
 
 class App extends Component {
 
@@ -92,17 +91,10 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {
-            this.state.persons.map((d, index) => {
-              return  <ErrorBoundary key={d.id}>
-                        <Person
-                          name={d.name}
-                          age={d.age}
-                          click={ index => { this.deletePersonHandler(index) }}
-                          changeHandler={ (event) => this.nameChangeHandler(event, d.id) } />
-                      </ErrorBoundary>
-            })
-          }
+          <Persons
+            persons={this.state.persons}
+            deletePersonHandler={this.deletePersonHandler}
+            nameChangeHandler={this.nameChangeHandler}/>
         </div>
       );
     }
