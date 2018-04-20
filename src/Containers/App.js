@@ -6,6 +6,7 @@ import ValidateText from '../Components/ValidateText/ValidateText';
 import CharText from '../Components/CharText/CharText';
 import classNames from 'classnames';
 import Persons from '../Components/Persons/Persons';
+import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
 
@@ -104,19 +105,14 @@ class App extends Component {
       return <CharText key={index} char={d} clickHandler={ (event) => this.deleteCharTextHandler(index) }/>
     });
 
-    let toggleButtonStyle;
-    if(!this.state.showPersons) {
-      toggleButtonStyle = classNames(classes.Button, classes.green);
-    } else {
-      toggleButtonStyle = classNames(classes.Button, classes.red);
-    }
+
 
     return (
       <div className={classNames(classes.App, classes.body)}>
-        <h1>Hi I'm a React app</h1>
-        <p>This is really working !</p>
-        <button className={toggleButtonStyle} onClick={this.togglePersonsHandler}>Toggle Persons</button>
-          {persons}
+        <Cockpit
+          showPersons={this.state.showPersons}
+          togglePersonsHandler={this.togglePersonsHandler}/>
+        {persons}
         <UserInput userName={this.state.userName} nameChangeHandler={this.userNameChangeHandler}/>
         <UserOutput username={this.state.userName}/>
         <UserOutput username="Roopa"/>
