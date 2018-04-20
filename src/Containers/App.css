@@ -2,33 +2,8 @@
   text-align: center;
 }
 
-.App .Button {
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-}
-
-.App .Button:hover {
-  background-color: lightgreen;
-  color: black;
-}
-
 .body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
-
-.green {
-  background-color: green;
-}
-
-.App button.red {
-  background-color: red;
-}
-
-.App button.red:hover {
-  background-color: salmon;
-  color: black;
 }

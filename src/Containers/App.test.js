@@ -16,12 +16,12 @@ it('App component should have a "persons" state', () => {
 });
 
 it('App should have a button', () => {
-  const wrapper = shallow(<App />);
+  const wrapper = mount(<App />);
   expect(wrapper.find('button')).toHaveLength(1);
 })
 
 it('Button should have a onClick handler', () => {
-  const wrapper = shallow(<App />);
+  const wrapper = mount(<App />);
   expect(wrapper.find('button').prop('onClick')).toBeDefined();
   expect(wrapper.find('button').prop('onClick')); // this is a function.
   expect(wrapper.find('button').props()).toHaveProperty('onClick');
