@@ -10,6 +10,19 @@ import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor', props);
+  }
+
+  componentWillMount() {
+    console.log('[App.js] componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
+
   state = {
     persons: [
       { id: "jdjhfk", name: "Santosh", age: 45 },
@@ -22,17 +35,6 @@ class App extends Component {
     inputText: '',
     textLenght: ''
   }
-
-  // switchNameHandler = newName => {
-  //   console.log('Switch Name Handler Called...');
-  //   this.setState({
-  //     persons: [
-  //       { name: newName, age: 45 },
-  //       { name: "Roopa", age: 40 },
-  //       { name: "Sukruthi", age: 14 }
-  //     ]
-  //   })
-  // }
 
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(d => d.id === id);
@@ -86,7 +88,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log('[App.js] render()');
     let persons = null;
 
     if (this.state.showPersons) {
