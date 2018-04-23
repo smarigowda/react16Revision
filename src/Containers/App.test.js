@@ -15,6 +15,12 @@ it('App component should have a "persons" state', () => {
   expect(wrapper.state('persons')).toHaveLength(3);
 });
 
+it('App component should have a "title" props', () => {
+  const wrapper = mount(<App title="React Revision"/>);
+  expect(wrapper.props().title).toBeDefined();
+  expect(wrapper.state('persons')).toBeDefined();
+});
+
 it('App should have a button', () => {
   const wrapper = mount(<App />);
   expect(wrapper.find('button')).toHaveLength(1);
