@@ -23,6 +23,22 @@ class App extends Component {
     console.log('[App.js] componentDidMount');
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate', nextProps, nextState);
+    // prevents from rendering if objects have the same values
+    return !Object.is(nextProps, this.state);
+    // return true;
+    // return false;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('[App.js] componentWillUpdate', nextProps, nextState);
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
+
   state = {
     persons: [
       { id: "jdjhfk", name: "Santosh", age: 45 },
@@ -126,6 +142,9 @@ class App extends Component {
           <ValidateText text={this.state.inputText}/>
           {charList}
         </div>
+        <button className="always-show" onClick={
+          () => { this.setState({ showPersons: true }) }
+        }>Always Show Persons</button>
       </div>
     );
   }
