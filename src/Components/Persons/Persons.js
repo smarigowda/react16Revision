@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent {
   constructor(props) {
     super(props);
     console.log('[Persons.js] constructor', props);
@@ -19,14 +19,14 @@ class Persons extends Component {
     console.log('[Persons.js] componentWillRecieveProps: Update Hook', nextProps)
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log('[Persons.js] shouldComponentUpdate: Update Hook', nextProps, this.props);
-    console.log('[Persons.js] Object.is(nextProps.persons, this.props.persons) = ', Object.is(nextProps.persons, this.props.persons))
-    // prevents from rendering if objects have the same values
-    return !Object.is(nextProps.persons, this.props.persons);
-    // return true;
-    // return false;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   console.log('[Persons.js] shouldComponentUpdate: Update Hook', nextProps, this.props);
+  //   console.log('[Persons.js] Object.is(nextProps.persons, this.props.persons) = ', Object.is(nextProps.persons, this.props.persons))
+  //   // prevents from rendering if objects have the same values
+  //   return !Object.is(nextProps.persons, this.props.persons);
+  //   // return true;
+  //   // return false;
+  // }
 
   componentWillUpdate() {
     console.log('[Persons.js] componentWillUpdate');
