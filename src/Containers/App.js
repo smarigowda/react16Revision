@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classes from './App.css';
 import UserOutput from '../Components/UserOutput/UserOutput';
 import UserInput from '../Components/UserInput/UserInput';
@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
 
-class App extends Component {
+class App extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -21,6 +21,22 @@ class App extends Component {
 
   componentDidMount() {
     console.log('[App.js] componentDidMount');
+  }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[App.js] shouldComponentUpdate', nextProps, nextState);
+  //   // prevents from rendering if objects have the same values
+  //   return !Object.is(nextState, this.state);
+  //   // return true;
+  //   // return false;
+  // }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('[App.js] componentWillUpdate', nextProps, nextState);
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
   }
 
   state = {
@@ -126,6 +142,9 @@ class App extends Component {
           <ValidateText text={this.state.inputText}/>
           {charList}
         </div>
+        <button className="always-show" onClick={
+          () => { this.setState({ showPersons: true }) }
+        }>Always Show Persons</button>
       </div>
     );
   }

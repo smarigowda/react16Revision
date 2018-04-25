@@ -23,14 +23,14 @@ it('App component should have a "title" props', () => {
 
 it('App should have a button', () => {
   const wrapper = mount(<App />);
-  expect(wrapper.find('button')).toHaveLength(1);
+  expect(wrapper.find('.Button .green')).toHaveLength(1);
 })
 
 it('Button should have a onClick handler', () => {
   const wrapper = mount(<App />);
-  expect(wrapper.find('button').prop('onClick')).toBeDefined();
-  expect(wrapper.find('button').prop('onClick')); // this is a function.
-  expect(wrapper.find('button').props()).toHaveProperty('onClick');
+  expect(wrapper.find('.Button').prop('onClick')).toBeDefined();
+  expect(wrapper.find('.Button').prop('onClick')); // this is a function.
+  expect(wrapper.find('.Button').props()).toHaveProperty('onClick');
 });
 
 it('Clicking on the button for first time should set the state of showPersons to true and show three Persons', () => {
@@ -38,8 +38,8 @@ it('Clicking on the button for first time should set the state of showPersons to
   expect(wrapper.state('showPersons')).toEqual(false);
   wrapper.find('[class*="Person"]') //?
   expect(wrapper.find('[class*="Person"]')).toHaveLength(0);
-  wrapper.find('button'); //?
-  wrapper.find('button').simulate('click');
+  wrapper.find('.Button'); //?
+  wrapper.find('.Button').simulate('click');
   expect(wrapper.state('showPersons')).toEqual(true);
   debugger;
   console.log(wrapper.html()) //?
@@ -49,7 +49,7 @@ it('Clicking on the button for first time should set the state of showPersons to
 
 it('Clicking on a Person should delete the Person', () => {
   const wrapper = mount(<App />);
-  wrapper.find('button').simulate('click');
+  wrapper.find('.Button .green').simulate('click');
   wrapper.find('p#person').first().simulate('click');
   expect(wrapper.find('p#person')).toHaveLength(2);
 });
@@ -63,7 +63,8 @@ it('Clicking on a Person should delete the Person', () => {
 
 it('should update the name of a person when input is updated', () => {
   const wrapper = mount(<App />);
-  wrapper.find('button').simulate('click');
+  wrapper.html() //?
+  wrapper.find('.Button .green').simulate('click');
   wrapper.find('.Person input').first().simulate('change', {target: {value: 'My new value'}}); //?
   expect(wrapper.state('persons')[0].name).toBe('My new value');
 });
