@@ -105,4 +105,10 @@ it('should remove the CharText comp on click', () => {
   wrapper.html(); //?
   wrapper.find('.chartext').first().simulate('click');
   expect(wrapper.find('.chartext').first().text()).toBe('a');
+});
+
+it('clicking on always show button should show 3 persons', () => {
+  const wrapper = mount(<App />);
+  wrapper.find('.always-show').first().simulate('click');
+  expect(wrapper.find('div.Person')).toHaveLength(3);
 })
