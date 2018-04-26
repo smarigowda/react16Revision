@@ -7,6 +7,7 @@ import CharText from '../Components/CharText/CharText';
 import classNames from 'classnames';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 class App extends PureComponent {
 
@@ -126,7 +127,7 @@ class App extends PureComponent {
 
 
     return (
-      <div className={classNames(classes.App, classes.body)}>
+      <WithClass classes={classNames(classes.App, classes.body)}>
         <h1>{this.props.title}</h1>
         <Cockpit
           showPersons={this.state.showPersons}
@@ -145,7 +146,7 @@ class App extends PureComponent {
         <button className="always-show" onClick={
           () => { this.setState({ showPersons: true }) }
         }>Always Show Persons</button>
-      </div>
+      </WithClass>
     );
   }
 }
