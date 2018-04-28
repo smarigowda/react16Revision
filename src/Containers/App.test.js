@@ -17,6 +17,7 @@ it('App component should have a "persons" state', () => {
 
 it('App component should have a "title" props', () => {
   const wrapper = mount(<App title="React Revision"/>);
+  wrapper.html(); //?
   expect(wrapper.props().title).toBeDefined();
   expect(wrapper.state('persons')).toBeDefined();
 });
