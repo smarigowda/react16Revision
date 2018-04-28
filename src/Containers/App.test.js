@@ -33,6 +33,14 @@ it('Button should have a onClick handler', () => {
   expect(wrapper.find('.Button').props()).toHaveProperty('onClick');
 });
 
+it('Clicking on Login button should set the authenticated state to true', () => {
+  const wrapper = mount(<App />);
+  expect(wrapper.state().isAuthenticated).toBe(false);
+  wrapper.find('.Button').simulate('click');
+  wrapper.find('.login').simulate('click') //?
+  expect(wrapper.state().isAuthenticated).toBe(true);
+});
+
 it('Clicking on the button for first time should set the state of showPersons to true and show three Persons', () => {
   const wrapper = mount(<App />); //?
   expect(wrapper.state('showPersons')).toEqual(false);

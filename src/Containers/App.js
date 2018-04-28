@@ -53,6 +53,7 @@ class App extends PureComponent {
     inputText: '',
     textLenght: '',
     togglePersonsCount: 0,
+    isAuthenticated: false
   }
 
   nameChangeHandler = (event, id) => {
@@ -109,6 +110,12 @@ class App extends PureComponent {
     })
   }
 
+  loginHandler = () => {
+    this.setState({
+      isAuthenticated: true
+    });
+  }
+
   render() {
     console.log('[App.js] render()');
     let persons = null;
@@ -119,7 +126,8 @@ class App extends PureComponent {
           <Persons
             persons={this.state.persons}
             deletePersonHandler={this.deletePersonHandler}
-            nameChangeHandler={this.nameChangeHandler}/>
+            nameChangeHandler={this.nameChangeHandler}
+            isAuthenticated={this.state.isAuthenticated}/>
         </div>
       );
     }
@@ -135,8 +143,10 @@ class App extends PureComponent {
       <WithClass classes={classNames(classes.App, classes.body)}>
         <h1>{this.props.title}</h1>
         <Cockpit
+          loginHandler={this.loginHandler}
           showPersons={this.state.showPersons}
-          togglePersonsHandler={this.togglePersonsHandler}/>
+          togglePersonsHandler={this.togglePersonsHandler}
+        />
         {persons}
         <UserInput userName={this.state.userName} nameChangeHandler={this.userNameChangeHandler}/>
         <UserOutput username={this.state.userName}/>

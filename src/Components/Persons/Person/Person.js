@@ -23,6 +23,7 @@ class Person extends Component {
         console.log('[Person.js] render()');
         return (
             <WithClass classes={classes.Person}>
+                {this.props.isAuthenticated ? <p>I'm Authenticated</p>: null}
                 <p id="person" onClick={this.props.click}>I'm {this.props.name}, I am {this.props.age} years old</p>
                 <p id="message">{this.props.children}</p>
                 <input

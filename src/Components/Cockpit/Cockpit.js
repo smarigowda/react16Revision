@@ -13,6 +13,7 @@ const cockpit = props => {
   }
   return (
     <Aux>
+      <button className="login" onClick={props.loginHandler}>Login</button>
       <h1>Hi I'm a React app</h1>
       <p>This is really working !</p>
       <button className={toggleButtonStyle} onClick={props.togglePersonsHandler}>Toggle Persons</button>
