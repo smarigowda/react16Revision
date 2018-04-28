@@ -44,6 +44,7 @@ class Persons extends PureComponent {
                   position={index}
                   name={d.name}
                   age={d.age}
+                  isAuthenticated={this.props.isAuthenticated}
                   click={ index => { this.props.deletePersonHandler(index) }}
                   changeHandler={ (event) => this.props.nameChangeHandler(event, d.id) } />
     });
