@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import classes from './Cockpit.css';
+import Aux from '../../hoc/Aux';
 
 
 const cockpit = props => {
@@ -11,11 +12,11 @@ const cockpit = props => {
     toggleButtonStyle = classNames(classes.Button, classes.red);
   }
   return (
-    <div>
+    <Aux>
       <h1>Hi I'm a React app</h1>
       <p>This is really working !</p>
       <button className={toggleButtonStyle} onClick={props.togglePersonsHandler}>Toggle Persons</button>
-    </div>
+    </Aux>
   )
 }
 
