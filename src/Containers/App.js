@@ -85,10 +85,12 @@ class App extends PureComponent {
 
   togglePersonsHandler = () => {
     const showPersons = this.state.showPersons;
-    this.setState({
-      showPersons: !showPersons,
-      togglePersonsCount: this.state.togglePersonsCount + 1
-    })
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !showPersons,
+        togglePersonsCount: this.state.togglePersonsCount + 1
+      }
+    });
   }
 
   updateText = event => {
