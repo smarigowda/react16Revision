@@ -17,6 +17,7 @@ it('App component should have a "persons" state', () => {
 
 it('App component should have a "title" props', () => {
   const wrapper = mount(<App title="React Revision"/>);
+  wrapper.html(); //?
   expect(wrapper.props().title).toBeDefined();
   expect(wrapper.state('persons')).toBeDefined();
 });
@@ -31,6 +32,14 @@ it('Button should have a onClick handler', () => {
   expect(wrapper.find('.Button').prop('onClick')).toBeDefined();
   expect(wrapper.find('.Button').prop('onClick')); // this is a function.
   expect(wrapper.find('.Button').props()).toHaveProperty('onClick');
+});
+
+it('Clicking on Login button should set the authenticated state to true', () => {
+  const wrapper = mount(<App />);
+  expect(wrapper.state().isAuthenticated).toBe(false);
+  wrapper.find('.Button').simulate('click');
+  wrapper.find('.login').simulate('click') //?
+  expect(wrapper.state().isAuthenticated).toBe(true);
 });
 
 it('Clicking on the button for first time should set the state of showPersons to true and show three Persons', () => {

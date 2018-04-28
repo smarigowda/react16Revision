@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithClass';
+import PropTypes from 'prop-types';
 
 class App extends PureComponent {
 
@@ -40,6 +41,17 @@ class App extends PureComponent {
     console.log('[App.js] componentDidUpdate');
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log('[App.js] getDerivedStateFromProps', nextProps, prevState);
+    return {
+      prevState
+    }
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[App.js] getSnapshotBeforeUpdate');
+    return null;
+  }
   state = {
     persons: [
       { id: "jdjhfk", name: "Santosh", age: 45 },
@@ -50,7 +62,9 @@ class App extends PureComponent {
     userName: 'Santosh Default Name',
     showPersons: false,
     inputText: '',
-    textLenght: ''
+    textLenght: '',
+    togglePersonsCount: 0,
+    isAuthenticated: false
   }
 
   nameChangeHandler = (event, id) => {
@@ -84,9 +98,12 @@ class App extends PureComponent {
 
   togglePersonsHandler = () => {
     const showPersons = this.state.showPersons;
-    this.setState({
-      showPersons: !showPersons
-    })
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !showPersons,
+        togglePersonsCount: prevState.togglePersonsCount + 1
+      }
+    });
   }
 
   updateText = event => {
@@ -104,6 +121,12 @@ class App extends PureComponent {
     })
   }
 
+  loginHandler = () => {
+    this.setState({
+      isAuthenticated: true
+    });
+  }
+
   render() {
     console.log('[App.js] render()');
     let persons = null;
@@ -114,7 +137,8 @@ class App extends PureComponent {
           <Persons
             persons={this.state.persons}
             deletePersonHandler={this.deletePersonHandler}
-            nameChangeHandler={this.nameChangeHandler}/>
+            nameChangeHandler={this.nameChangeHandler}
+            isAuthenticated={this.state.isAuthenticated}/>
         </div>
       );
     }
@@ -130,8 +154,10 @@ class App extends PureComponent {
       <WithClass classes={classNames(classes.App, classes.body)}>
         <h1>{this.props.title}</h1>
         <Cockpit
+          loginHandler={this.loginHandler}
           showPersons={this.state.showPersons}
-          togglePersonsHandler={this.togglePersonsHandler}/>
+          togglePersonsHandler={this.togglePersonsHandler}
+        />
         {persons}
         <UserInput userName={this.state.userName} nameChangeHandler={this.userNameChangeHandler}/>
         <UserOutput username={this.state.userName}/>
@@ -151,4 +177,13 @@ class App extends PureComponent {
   }
 }
 
+App.propTypes = {
+  togglePersonsCount: PropTypes.number,
+  persons: PropTypes.object,
+  other: PropTypes.string,
+  userName: PropTypes.string,
+  showPersons: PropTypes.bool,
+  inputText: PropTypes.string,
+  textLength: PropTypes.string,
+}
 export default App;

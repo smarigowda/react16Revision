@@ -41,8 +41,10 @@ class Persons extends PureComponent {
     return this.props.persons.map((d, index) => {
       return  <Person
                   key={d.id}
+                  position={index}
                   name={d.name}
                   age={d.age}
+                  isAuthenticated={this.props.isAuthenticated}
                   click={ index => { this.props.deletePersonHandler(index) }}
                   changeHandler={ (event) => this.props.nameChangeHandler(event, d.id) } />
     });
