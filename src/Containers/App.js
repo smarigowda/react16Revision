@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import Persons from '../Components/Persons/Persons';
 import Cockpit from '../Components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithClass';
+import PropTypes from 'prop-types';
 
 class App extends PureComponent {
 
@@ -155,4 +156,13 @@ class App extends PureComponent {
   }
 }
 
+App.propTypes = {
+  togglePersonsCount: PropTypes.number,
+  persons: PropTypes.object,
+  other: PropTypes.string,
+  userName: PropTypes.string,
+  showPersons: PropTypes.bool,
+  inputText: PropTypes.string,
+  textLength: PropTypes.string,
+}
 export default App;
