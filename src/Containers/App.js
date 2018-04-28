@@ -50,7 +50,8 @@ class App extends PureComponent {
     userName: 'Santosh Default Name',
     showPersons: false,
     inputText: '',
-    textLenght: ''
+    textLenght: '',
+    togglePersonsCount: 0,
   }
 
   nameChangeHandler = (event, id) => {
@@ -85,7 +86,8 @@ class App extends PureComponent {
   togglePersonsHandler = () => {
     const showPersons = this.state.showPersons;
     this.setState({
-      showPersons: !showPersons
+      showPersons: !showPersons,
+      togglePersonsCount: this.state.togglePersonsCount + 1
     })
   }
 
